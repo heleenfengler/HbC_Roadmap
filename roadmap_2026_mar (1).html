@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Roadmap — 2026 March</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* ── Healthbridge brand palette ───────────────────────────────────────── */
+  :root {
+    --hb-charcoal:    #414042;
+    --hb-charcoal-dk: #2e2d2f;
+    --hb-navy:        #21364F;
+    --hb-orange:      #F7941D;
+    --hb-red-orange:  #FF4B00;
+    --hb-green:       #75EB9E;
+    --hb-green-2:     #BAF5CF;
+    --hb-green-dim:   #E3FBEC;
+    --hb-purple:      #7757EC;
+    --hb-gray:        #86888A;
+    --hb-gray-2:      #DCDDDE;
+    --white:          #FFFFFF;
+
+    /* ── surface tokens ── */
+    --bg:       #f5f4f2;
+    --surface:  #ffffff;
+    --surface2: #eeecea;
+    --border:   #e0ddd9;
+    --text:     #414042;
+    --muted:    #86888A;
+    --dim:      #b8b5b0;
+
+    /* ── accent (switches per mode) ── */
+    --accent:      #75EB9E;
+    --accent-dark: #21364F;
+
+    /* ── bar colors (switch per mode) ── */
+    --bar-green:  #75EB9E;
+    --bar-dark:   #414042;
+    --bar-blue:   #7757EC;
+    --bar-orange: #F7941D;
+  }
+
+  body.mode-nova {
+    --accent:     #F7941D;
+    --accent-dark:#ffffff;
+    --bar-green:  #F7941D;
+    --bar-dark:   #414042;
+    --bar-blue:   #FF4B00;
+    --bar-orange: #FFC000;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Figtree', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     HEADER
+  ══════════════════════════════════════════════════════════════════════════ */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--hb-charcoal-dk);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    height: 58px;
+    gap: 20px;
+  }
+
+  /* HB logo */
+  .hb-logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .hb-ring {
+    width: 24px; height: 24px;
+    border: 2.5px solid var(--hb-orange);
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .hb-ring::after {
+    content: '';
+    position: absolute;
+    bottom: -2.5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px; height: 3.5px;
+    background: var(--hb-charcoal-dk);
+    border-radius: 0 0 4px 4px;
+  }
+
+  .hb-wordmark {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.3px;
+  }
+
+  .header-sep {
+    width: 1px; height: 24px;
+    background: rgba(255,255,255,0.12);
+    flex-shrink: 0;
+  }
+
+  .header-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.38);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+
+  /* ── PRODUCT TOGGLE ── */
+  .product-toggle {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 3px;
+    gap: 2px;
+  }
+
+  .tog-btn {
+    font-family: 'Figtree', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    color: rgba(255,255,255,0.45);
+    background: transparent;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+  }
+
+  .tog-btn:hover:not(.active) {
+    color: rgba(255,255,255,0.75);
+    background: rgba(255,255,255,0.06);
+  }
+
+  .tog-btn.active-nova {
+    background: var(--hb-orange);
+    color: #fff;
+    box-shadow: 0 1px 6px rgba(247,148,29,0.45);
+  }
+
+  .tog-btn.active-hbc {
+    background: var(--hb-green);
+    color: var(--hb-navy);
+    box-shadow: 0 1px 6px rgba(117,235,158,0.4);
+  }
+
+  .header-snapshot {
+    margin-left: auto;
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.28);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     MODE INDICATOR STRIP
+  ══════════════════════════════════════════════════════════════════════════ */
+  .mode-strip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 28px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+
+  .mode-strip.s-hbc {
+    background: rgba(117,235,158,0.07);
+    color: #156636;
+    border-bottom-color: rgba(117,235,158,0.22);
+  }
+
+  .mode-strip.s-nova {
+    background: rgba(247,148,29,0.07);
+    color: #7c3900;
+    border-bottom-color: rgba(247,148,29,0.22);
+  }
+
+  .strip-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: blink 2.2s ease-in-out infinite;
+  }
+  .s-hbc  .strip-dot { background: var(--hb-green); }
+  .s-nova .strip-dot { background: var(--hb-orange); }
+
+  @keyframes blink {
+    0%,100% { opacity:1; transform:scale(1); }
+    50%      { opacity:0.4; transform:scale(0.75); }
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     STATS BAR
+  ══════════════════════════════════════════════════════════════════════════ */
+  .stats-bar {
+    display: flex;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat {
+    flex: 1;
+    padding: 14px 24px;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .stat-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    color: var(--muted);
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     FILTERS
+  ══════════════════════════════════════════════════════════════════════════ */
+  .filters {
+    padding: 14px 28px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .filter-label {
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+    color: var(--dim);
+    margin-right: 2px;
+  }
+
+  .filter-btn {
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    color: var(--muted);
+    font-family: 'Figtree', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.2px;
+  }
+
+  .filter-btn:hover { border-color: var(--accent); color: var(--text); }
+
+  .filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-dark);
+  }
+
+  .filter-btn.fa-delivered.active { background: var(--hb-green-dim); border-color: var(--hb-green-2); color: #156636; }
+  .filter-btn.fa-progress.active  { background: #fff3e0; border-color: #fcd08a; color: #7c3900; }
+  .filter-btn.fa-late.active      { background: #fff0ee; border-color: #ffbdad; color: #7c1d00; }
+  .filter-btn.fa-parked.active    { background: #f3f4f6; border-color: var(--hb-gray-2); color: #374151; }
+
+  .fsep { width: 1px; height: 20px; background: var(--border); margin: 0 4px; }
+
+  .search-wrap {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 5px;
+    padding: 5px 12px;
+    transition: border-color 0.15s;
+  }
+  .search-wrap:focus-within { border-color: var(--accent); }
+  .search-wrap input {
+    background: none;
+    border: none;
+    outline: none;
+    font-family: 'Figtree', sans-serif;
+    font-size: 11px;
+    color: var(--text);
+    width: 190px;
+  }
+  .search-wrap input::placeholder { color: var(--dim); }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     COLUMN HEADER
+  ══════════════════════════════════════════════════════════════════════════ */
+  .tl-header {
+    display: grid;
+    grid-template-columns: 320px 76px 124px 132px 1fr;
+    position: sticky;
+    top: 58px;
+    z-index: 50;
+    background: var(--bg);
+    border-bottom: 2px solid var(--border);
+  }
+
+  .th-cell {
+    font-size: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--dim);
+    padding: 8px 16px;
+    border-right: 1px solid var(--border);
+  }
+
+  .th-months {
+    padding: 8px 12px;
+    display: flex;
+    gap: 2px;
+  }
+
+  .th-month {
+    flex: 1;
+    font-size: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--dim);
+    text-align: center;
+  }
+
+  .th-month.cur { color: var(--accent); font-weight: 800; }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+  ══════════════════════════════════════════════════════════════════════════ */
+  main { padding: 16px 28px 48px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 0 8px;
+  }
+
+  .section-pip {
+    width: 10px; height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .section-rule { flex: 1; height: 1px; background: var(--border); }
+
+  .section-count {
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--dim);
+    letter-spacing: 0.5px;
+  }
+
+  /* ── ITEM CARD ── */
+  .item-card {
+    display: grid;
+    grid-template-columns: 320px 76px 124px 132px 1fr;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    margin-bottom: 5px;
+    background: var(--surface);
+    overflow: hidden;
+    transition: border-color 0.15s, background 0.15s, transform 0.15s;
+    animation: fadeUp 0.22s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(4px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  .item-card:hover {
+    border-color: #ccc8c2;
+    background: var(--surface2);
+    transform: translateX(2px);
+  }
+
+  .item-name {
+    padding: 11px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--text);
+    border-right: 1px solid var(--border);
+  }
+
+  /* ── PRIORITY ── */
+  .item-priority {
+    padding: 11px 8px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+
+  .pri-badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  .pri-high   { background:#fff0ee; color:#7c1d00; border:1px solid #ffbdad; }
+  .pri-medium { background:#fff8e6; color:#7c4d00; border:1px solid #fcd975; }
+  .pri-low    { background:var(--hb-green-dim); color:#156636; border:1px solid var(--hb-green-2); }
+
+  /* ── STATUS ── */
+  .item-status {
+    padding: 11px 8px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  .sdot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+
+  .s-delivered { color:#156636; background:var(--hb-green-dim); border:1px solid var(--hb-green-2); }
+  .s-delivered .sdot { background:var(--hb-green); }
+
+  .s-progress { color:#7c3900; background:#fff3e0; border:1px solid #fcd08a; }
+  .s-progress .sdot { background:var(--hb-orange); animation:blink 1.5s ease-in-out infinite; }
+
+  .s-parked { color:#4b5563; background:#f3f4f6; border:1px solid var(--hb-gray-2); }
+  .s-parked .sdot { background:var(--hb-gray); }
+
+  .s-late { color:#7c1d00; background:#fff0ee; border:1px solid #ffbdad; }
+  .s-late .sdot { background:var(--hb-red-orange); }
+
+  .s-pilot { color:#3b1f8c; background:#ede9fd; border:1px solid #c4b5fd; }
+  .s-pilot .sdot { background:var(--hb-purple); }
+
+  /* ── VALUE ── */
+  .item-value {
+    padding: 11px 8px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+
+  .val-badge {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .val-badge.v-meraki   { background:#fff8e6; color:#7c4d00; border-color:#fcd975; }
+  .val-badge.v-10k      { background:#ede9fd; color:#3b1f8c; border-color:#c4b5fd; }
+  .val-badge.v-spec     { background:#e8eef5; color:var(--hb-navy); border-color:#b0c4d8; }
+  .val-badge.v-d1v      { background:var(--hb-green-dim); color:#156636; border-color:var(--hb-green-2); }
+  .val-badge.v-newval   { background:#f5f4f2; color:var(--muted); border-color:var(--border); }
+
+  /* ── TIMELINE ── */
+  .item-timeline { padding: 8px 12px; }
+
+  .tl-months { display:flex; gap:2px; }
+
+  .tl-cell {
+    flex: 1;
+    height: 20px;
+    border-radius: 2px;
+    background: var(--bg);
+    min-width: 14px;
+    transition: background 0.3s;
+  }
+
+  .tl-cell.c-green  { background: var(--bar-green);  opacity: 0.88; }
+  .tl-cell.c-dark   { background: var(--bar-dark);   opacity: 0.72; }
+  .tl-cell.c-blue   { background: var(--bar-blue);   opacity: 0.82; }
+  .tl-cell.c-orange { background: var(--bar-orange); opacity: 0.92; }
+
+  .tl-cell.cur-mo {
+    outline: 2px solid var(--accent);
+    outline-offset: -1px;
+  }
+
+  .bar-lbl {
+    font-size: 9px;
+    font-weight: 600;
+    color: #fff;
+    padding: 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    line-height: 20px;
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     FOOTER LEGEND
+  ══════════════════════════════════════════════════════════════════════════ */
+  .legend {
+    display: flex;
+    gap: 22px;
+    padding: 13px 28px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+    background: var(--surface);
+  }
+
+  .leg-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.2px;
+  }
+
+  .leg-sw {
+    width: 12px; height: 12px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* empty state */
+  .empty-state {
+    display: none;
+    text-align: center;
+    padding: 64px 20px;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body class="mode-hbc">
+
+<!-- ══════════ HEADER ══════════ -->
+<header>
+  <div class="hb-logo">
+    <div class="hb-ring"></div>
+    <span class="hb-wordmark">healthbridge</span>
+  </div>
+
+  <div class="header-sep"></div>
+  <div class="header-label">Product Roadmap</div>
+
+  <!-- TOGGLE -->
+  <div class="product-toggle" style="margin-left:20px">
+    <button class="tog-btn" id="btnNova" onclick="setMode('nova')">Nova</button>
+    <button class="tog-btn active-hbc" id="btnHbc" onclick="setMode('hbc')">Healthbridge Clinical</button>
+  </div>
+
+  <div class="header-snapshot">2026 · March Snapshot</div>
+</header>
+
+<!-- ══════════ MODE STRIP ══════════ -->
+<div class="mode-strip s-hbc" id="modeStrip">
+  <div class="strip-dot"></div>
+  <span id="stripText">Showing <strong>Healthbridge Clinical</strong> — iLab Projects · Specialists · Day 1 Value · Nora · Meraki 3000 · General Roadmap</span>
+</div>
+
+<!-- ══════════ STATS ══════════ -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num" style="color:var(--hb-orange)" id="sTotal">—</div>
+    <div class="stat-label">Total Items</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num" style="color:#16a34a" id="sDelivered">—</div>
+    <div class="stat-label">Delivered</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num" style="color:var(--hb-orange)" id="sProgress">—</div>
+    <div class="stat-label">In Progress</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num" style="color:var(--hb-red-orange)" id="sLate">—</div>
+    <div class="stat-label">Late</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num" style="color:var(--hb-gray)" id="sParked">—</div>
+    <div class="stat-label">Parked</div>
+  </div>
+</div>
+
+<!-- ══════════ FILTERS ══════════ -->
+<div class="filters">
+  <span class="filter-label">Filter</span>
+  <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
+  <div class="fsep"></div>
+  <span class="filter-label">Status</span>
+  <button class="filter-btn fa-delivered" onclick="setFilter('delivered',this)">✓ Delivered</button>
+  <button class="filter-btn fa-progress"  onclick="setFilter('progress',this)">⟳ In Progress</button>
+  <button class="filter-btn fa-late"      onclick="setFilter('late',this)">⚠ Late</button>
+  <button class="filter-btn fa-parked"    onclick="setFilter('parked',this)">⏸ Parked</button>
+  <div class="fsep"></div>
+  <span class="filter-label">Priority</span>
+  <button class="filter-btn" onclick="setFilter('high',this)">High</button>
+  <button class="filter-btn" onclick="setFilter('medium',this)">Medium</button>
+  <button class="filter-btn" onclick="setFilter('low',this)">Low</button>
+  <div class="search-wrap">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#b8b5b0" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="searchInput" placeholder="Search items…" oninput="applySearch(this.value)">
+  </div>
+</div>
+
+<!-- ══════════ COL HEADERS ══════════ -->
+<div class="tl-header">
+  <div class="th-cell">Feature</div>
+  <div class="th-cell" style="padding:8px 8px">Priority</div>
+  <div class="th-cell" style="padding:8px 8px">Status</div>
+  <div class="th-cell" style="padding:8px 8px">Value Area</div>
+  <div class="th-months" id="tlMonths"></div>
+</div>
+
+<main id="mainContent"></main>
+<div class="empty-state" id="emptyState">No items match the current filter.</div>
+
+<!-- ══════════ LEGEND ══════════ -->
+<div class="legend">
+  <div class="leg-item"><div class="leg-sw" id="ls-green" style="background:var(--hb-green)"></div>Scheduled / Delivered</div>
+  <div class="leg-item"><div class="leg-sw" style="background:var(--hb-charcoal)"></div>Planned</div>
+  <div class="leg-item"><div class="leg-sw" id="ls-blue" style="background:var(--hb-purple)"></div>In-Flight</div>
+  <div class="leg-item"><div class="leg-sw" id="ls-orange" style="background:var(--hb-orange)"></div>Milestone</div>
+  <div class="leg-item"><div class="leg-sw" style="background:transparent;border:2px solid var(--accent);box-sizing:border-box"></div>Current Month (Mar)</div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════════════════
+   MONTHS
+══════════════════════════════════════════════════════════════════════════════ */
+const MONTHS=[
+  {l:'Aug',y:'25'},{l:'Sep',y:'25'},{l:'Oct',y:'25'},{l:'Nov',y:'25'},{l:'Dec',y:'25'},
+  {l:'Jan',y:'26'},{l:'Feb',y:'26'},{l:'Mar',y:'26',cur:true},
+  {l:'Apr',y:'26'},{l:'May',y:'26'},{l:'Jun',y:'26'},{l:'Jul',y:'26'},
+  {l:'Aug',y:'26'},{l:'Sep',y:'26'},{l:'Oct',y:'26'},{l:'Nov',y:'26'},{l:'Dec',y:'26'}
+];
+const CUR_IDX=7;
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   DATA  (product: 'nova' | 'hbc')
+══════════════════════════════════════════════════════════════════════════════ */
+const SECTIONS=[
+
+  /* ── NOVA ─────────────────────────────────────────────────────────────── */
+  { product:'nova', title:'Nova', color:'#F7941D', items:[
+    { name:'Stabilisation',                                   pri:'',  st:'',    val:'',
+      bars:[{s:0,e:4,lbl:'Stabilisation',t:'green'}] },
+    { name:'Stock',                                           pri:'',  st:'late',val:'',
+      bars:[{s:6,e:10,lbl:'Stock',t:'green'}] },
+    { name:'Consulting Specialists + Common Phase',           pri:'',  st:'',    val:'specialist',
+      bars:[{s:6,e:11,lbl:'Consulting Specialists',t:'dark'}] },
+    { name:'Complex Practices (multi-BPN, patient sharing)',  pri:'',  st:'',    val:'specialist',
+      bars:[{s:10,e:12,lbl:'Complex Practices',t:'dark'}] },
+    { name:'Phase 3 Remaining (dev)',                         pri:'',  st:'',    val:'',
+      bars:[{s:13,e:16,lbl:'Phase 3',t:'dark'}] },
+    { name:'Migration',                                       pri:'',  st:'',    val:'', bars:[] }
+  ]},
+
+  /* ── HBC — iLab Projects ───────────────────────────────────────────────── */
+  { product:'hbc', title:'Hb Clinical · iLab Projects', color:'#75EB9E', items:[
+    { name:'Bundle 1: Co-pilot + Path Messenger',                       pri:'high', st:'delivered', val:'',
+      bars:[{s:2,e:7,lbl:'Co-pilot & Path Messenger',t:'green'}] },
+    { name:'Bundle 2: Practice Partner',                                pri:'high', st:'progress',  val:'meraki',
+      bars:[{s:5,e:7,lbl:'',t:'orange'}] },
+    { name:'Bundle 3: WhatsApp (pt onboarding, consent, bookings)',     pri:'high', st:'progress',  val:'meraki',
+      bars:[{s:7,e:8,lbl:'',t:'blue'}] }
+  ]},
+
+  /* ── HBC — Specialists ─────────────────────────────────────────────────── */
+  { product:'hbc', title:'Specialists', color:'#21364F', items:[
+    { name:'Consulting Specialist Vanilla',                   pri:'medium', st:'', val:'specialist',
+      bars:[{s:0,e:5,lbl:'Consulting Specialists Vanilla',t:'green'}] },
+    { name:'Consulting Specialist Paeds',                     pri:'medium', st:'', val:'specialist',
+      bars:[{s:0,e:5,lbl:'',t:'green'}] },
+    { name:'Consulting Specialist Gynae',                     pri:'',       st:'', val:'specialist', bars:[] },
+    { name:'Specialist Enhancements with Nova Specialists',   pri:'medium', st:'', val:'specialist', bars:[] },
+    { name:'Advanced Dosage Calculator',                      pri:'low',    st:'', val:'newval',      bars:[] }
+  ]},
+
+  /* ── HBC — Day 1 Value ─────────────────────────────────────────────────── */
+  { product:'hbc', title:'Day 1 Value', color:'#BAF5CF', items:[
+    { name:'Practice Claim History (existing sites)',          pri:'',    st:'delivered', val:'meraki',
+      bars:[{s:1,e:1,lbl:'',t:'orange'}] },
+    { name:'Practice Path History (existing sites)',           pri:'',    st:'delivered', val:'meraki',
+      bars:[{s:2,e:2,lbl:'',t:'orange'}] },
+    { name:'Patient Path History (new practices)',             pri:'',    st:'progress',  val:'meraki',
+      bars:[{s:7,e:7,lbl:'',t:'blue'}] },
+    { name:'External EMR Notes (new practices)',               pri:'low', st:'delivered', val:'meraki',
+      bars:[{s:6,e:6,lbl:'',t:'blue'}] },
+    { name:'Voice Note into Patient History (all practices)',  pri:'high',st:'delivered', val:'meraki',
+      bars:[{s:6,e:6,lbl:'V1',t:'blue'}] },
+    { name:'Path: Requests',                                   pri:'',    st:'parked',    val:'',      bars:[] },
+    { name:'IS Claims into Hb C (IS Clients)',                 pri:'',    st:'parked',    val:'meraki',bars:[] }
+  ]},
+
+  /* ── HBC — Nora ─────────────────────────────────────────────────────────── */
+  { product:'hbc', title:'Nora', color:'#7757EC', items:[
+    { name:'Improved Medicine Names',        pri:'high', st:'',          val:'meraki',
+      bars:[{s:7,e:7,lbl:'',t:'blue'}] },
+    { name:'Various Note Templates',         pri:'',     st:'',          val:'meraki', bars:[] },
+    { name:'Language Options',               pri:'',     st:'',          val:'meraki', bars:[] },
+    { name:'Nora Sidebar / Backend Update',  pri:'',     st:'delivered', val:'meraki',
+      bars:[{s:6,e:6,lbl:'',t:'blue'}] }
+  ]},
+
+  /* ── HBC — Meraki 3000 ───────────────────────────────────────────────────── */
+  { product:'hbc', title:'Meraki 3000', color:'#F7941D', items:[
+    { name:'Hb Clinical Thin Wedge',       pri:'high', st:'',      val:'meraki', bars:[] },
+    { name:'Nora Sidebar Implementation',  pri:'',     st:'pilot', val:'d1v',
+      bars:[{s:1,e:1,lbl:'',t:'dark'}] },
+    { name:'Clinical Standalone',          pri:'high', st:'',      val:'d1v',
+      bars:[{s:12,e:13,lbl:'',t:'dark'}] }
+  ]},
+
+  /* ── HBC — General Roadmap ───────────────────────────────────────────────── */
+  { product:'hbc', title:'General Roadmap', color:'#86888A', items:[
+    { name:'Questionnaires',                         pri:'',       st:'delivered', val:'newval', bars:[] },
+    { name:'UI Refresh',                             pri:'medium', st:'',          val:'10k',
+      bars:[{s:12,e:13,lbl:'',t:'dark'}] },
+    { name:'Password Protected Documents',           pri:'',       st:'delivered', val:'newval', bars:[] },
+    { name:'Global Inbox',                           pri:'medium', st:'',          val:'newval', bars:[] },
+    { name:'Personalise WhatsApp Pic and Messaging', pri:'high',   st:'',          val:'meraki', bars:[] },
+    { name:'Dis-Chem Add Medication Status',         pri:'medium', st:'progress',  val:'newval',
+      bars:[{s:7,e:7,lbl:'',t:'dark'}] }
+  ]},
+
+  /* ── HBC — No Priority / Parked ────────────────────────────────────────── */
+  { product:'hbc', title:'No Priority / Parked', color:'#DCDDDE', items:[
+    { name:'Netcare Hospital Summaries',              pri:'', st:'parked', val:'',       bars:[] },
+    { name:'Netcare Path Integration',                pri:'', st:'parked', val:'',       bars:[] },
+    { name:'DH: Vitality',                            pri:'', st:'parked', val:'',       bars:[] },
+    { name:'Dis-Chem Virtual Consults',               pri:'', st:'parked', val:'newval', bars:[] },
+    { name:'Kaelo DIS',                               pri:'', st:'parked', val:'',       bars:[] },
+    { name:'Allieds Move from myMPS to Nova - Notes', pri:'', st:'parked', val:'',       bars:[] },
+    { name:'Nora Replacement',                        pri:'', st:'parked', val:'',       bars:[] },
+    { name:'Independent Pharmacy Integrations',       pri:'', st:'parked', val:'newval',
+      bars:[{s:5,e:6,lbl:'',t:'dark'}] }
+  ]}
+];
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   STATE
+══════════════════════════════════════════════════════════════════════════════ */
+let mode='hbc', filterKey='all', query='';
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   INIT TIMELINE HEADER
+══════════════════════════════════════════════════════════════════════════════ */
+(function buildHeader(){
+  const w=document.getElementById('tlMonths');
+  MONTHS.forEach(m=>{
+    const d=document.createElement('div');
+    d.className='th-month'+(m.cur?' cur':'');
+    d.textContent=m.l;
+    w.appendChild(d);
+  });
+})();
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   RENDER BAR
+══════════════════════════════════════════════════════════════════════════════ */
+function renderBar(bars){
+  const cells=MONTHS.map((_,i)=>({filled:false,t:'',lbl:'',cur:i===CUR_IDX}));
+  (bars||[]).forEach(b=>{
+    for(let i=Math.max(0,b.s);i<=Math.min(MONTHS.length-1,b.e);i++){
+      cells[i].filled=true; cells[i].t=b.t;
+      if(i===b.s) cells[i].lbl=b.lbl||'';
+    }
+  });
+  let h='<div class="tl-months">',i=0;
+  while(i<cells.length){
+    const c=cells[i];
+    if(c.filled){
+      let j=i;
+      while(j<cells.length&&cells[j].filled&&cells[j].t===c.t) j++;
+      const span=j-i;
+      const cls=c.t==='green'?'c-green':c.t==='dark'?'c-dark':c.t==='blue'?'c-blue':'c-orange';
+      const cur=cells.slice(i,j).some(x=>x.cur)?' cur-mo':'';
+      h+=`<div class="tl-cell ${cls}${cur}" style="flex:${span};display:flex;align-items:center;">`;
+      if(c.lbl) h+=`<span class="bar-lbl">${c.lbl}</span>`;
+      h+=`</div>`;
+      i=j;
+    } else {
+      h+=`<div class="tl-cell"></div>`;
+      i++;
+    }
+  }
+  return h+'</div>';
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   BADGE HELPERS
+══════════════════════════════════════════════════════════════════════════════ */
+function priHTML(p){
+  if(!p) return `<div class="item-priority" style="border-right:1px solid var(--border)"></div>`;
+  const c=p==='high'?'pri-high':p==='medium'?'pri-medium':'pri-low';
+  return `<div class="item-priority" style="border-right:1px solid var(--border)"><span class="pri-badge ${c}">${p}</span></div>`;
+}
+
+function stCls(s){
+  const t=(s||'').toLowerCase().trim();
+  if(t==='delivered') return 's-delivered';
+  if(t.includes('progress')) return 's-progress';
+  if(t==='parked') return 's-parked';
+  if(t==='late') return 's-late';
+  if(t.includes('pilot')) return 's-pilot';
+  return '';
+}
+function stLbl(s){
+  if(!s) return '';
+  const t=s.toLowerCase().trim();
+  if(t==='delivered')       return '✓ Delivered';
+  if(t.includes('progress'))return '⟳ In Progress';
+  if(t==='parked')          return '⏸ Parked';
+  if(t==='late')            return '⚠ Late';
+  if(t.includes('pilot'))   return '◈ Pilot';
+  return s;
+}
+
+function stHTML(s){
+  if(!s) return `<div class="item-status" style="border-right:1px solid var(--border)"></div>`;
+  return `<div class="item-status" style="border-right:1px solid var(--border)"><span class="status-badge ${stCls(s)}"><span class="sdot"></span>${stLbl(s)}</span></div>`;
+}
+
+function valHTML(v){
+  if(!v) return `<div class="item-value" style="border-right:1px solid var(--border)"></div>`;
+  const map={
+    meraki:  {cls:'v-meraki', lbl:'Meraki 3000'},
+    '10k':   {cls:'v-10k',    lbl:'Meraki 10k'},
+    specialist:{cls:'v-spec', lbl:'Specialist Market'},
+    d1v:     {cls:'v-d1v',    lbl:'Day 1 Value'},
+    newval:  {cls:'v-newval', lbl:'New Value'}
+  };
+  const m=map[v]||{cls:'',lbl:v};
+  return `<div class="item-value" style="border-right:1px solid var(--border)"><span class="val-badge ${m.cls}">${m.lbl}</span></div>`;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   FILTER / SEARCH
+══════════════════════════════════════════════════════════════════════════════ */
+function matchesFilter(item){
+  const s=(item.st||'').toLowerCase().trim();
+  const p=(item.pri||'').toLowerCase().trim();
+  if(filterKey==='all')       return true;
+  if(filterKey==='delivered') return s==='delivered';
+  if(filterKey==='progress')  return s.includes('progress');
+  if(filterKey==='parked')    return s==='parked';
+  if(filterKey==='late')      return s==='late';
+  if(filterKey==='high')      return p==='high';
+  if(filterKey==='medium')    return p==='medium';
+  if(filterKey==='low')       return p==='low';
+  return true;
+}
+function matchesSearch(item){
+  return !query || item.name.toLowerCase().includes(query.toLowerCase());
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   RENDER ALL
+══════════════════════════════════════════════════════════════════════════════ */
+function renderAll(){
+  const main=document.getElementById('mainContent');
+  main.innerHTML='';
+  let totalVisible=0;
+
+  SECTIONS.filter(s=>s.product===mode).forEach((sec,si)=>{
+    const visible=sec.items.filter(it=>matchesFilter(it)&&matchesSearch(it));
+    if(!visible.length) return;
+    totalVisible+=visible.length;
+
+    const secEl=document.createElement('div');
+    secEl.innerHTML=`
+      <div class="section-header">
+        <div class="section-pip" style="background:${sec.color}"></div>
+        <div class="section-title">${sec.title}</div>
+        <div class="section-rule"></div>
+        <div class="section-count">${visible.length} item${visible.length!==1?'s':''}</div>
+      </div>`;
+
+    visible.forEach((item,idx)=>{
+      const card=document.createElement('div');
+      card.className='item-card';
+      card.style.animationDelay=`${(si*5+idx)*22}ms`;
+      card.innerHTML=`
+        <div class="item-name">${item.name}</div>
+        ${priHTML(item.pri)}
+        ${stHTML(item.st)}
+        ${valHTML(item.val)}
+        <div class="item-timeline">${renderBar(item.bars)}</div>`;
+      secEl.appendChild(card);
+    });
+
+    main.appendChild(secEl);
+  });
+
+  document.getElementById('emptyState').style.display=totalVisible?'none':'block';
+  updateStats();
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   STATS
+══════════════════════════════════════════════════════════════════════════════ */
+function updateStats(){
+  let total=0,del=0,prog=0,late=0,park=0;
+  SECTIONS.filter(s=>s.product===mode).forEach(s=>s.items.forEach(it=>{
+    total++;
+    const t=(it.st||'').toLowerCase();
+    if(t==='delivered') del++;
+    else if(t.includes('progress')) prog++;
+    else if(t==='late') late++;
+    else if(t==='parked') park++;
+  }));
+  document.getElementById('sTotal').textContent=total;
+  document.getElementById('sDelivered').textContent=del;
+  document.getElementById('sProgress').textContent=prog;
+  document.getElementById('sLate').textContent=late;
+  document.getElementById('sParked').textContent=park;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   MODE SWITCH
+══════════════════════════════════════════════════════════════════════════════ */
+function setMode(m){
+  mode=m;
+  document.body.className='mode-'+m;
+
+  const btnN=document.getElementById('btnNova');
+  const btnH=document.getElementById('btnHbc');
+  const strip=document.getElementById('modeStrip');
+  const stripTxt=document.getElementById('stripText');
+
+  if(m==='nova'){
+    btnN.className='tog-btn active-nova';
+    btnH.className='tog-btn';
+    strip.className='mode-strip s-nova';
+    stripTxt.innerHTML='Showing <strong>Nova</strong> — Stabilisation · Consulting Specialists · Complex Practices · Phase 3 · Migration';
+    // update legend swatches to nova colours
+    document.getElementById('ls-green').style.background='#F7941D';
+    document.getElementById('ls-blue').style.background='#FF4B00';
+    document.getElementById('ls-orange').style.background='#FFC000';
+  } else {
+    btnN.className='tog-btn';
+    btnH.className='tog-btn active-hbc';
+    strip.className='mode-strip s-hbc';
+    stripTxt.innerHTML='Showing <strong>Healthbridge Clinical</strong> — iLab Projects · Specialists · Day 1 Value · Nora · Meraki 3000 · General Roadmap';
+    document.getElementById('ls-green').style.background='#75EB9E';
+    document.getElementById('ls-blue').style.background='#7757EC';
+    document.getElementById('ls-orange').style.background='#F7941D';
+  }
+
+  // reset filters
+  filterKey='all'; query='';
+  document.getElementById('searchInput').value='';
+  document.querySelectorAll('.filter-btn').forEach((b,i)=>{ i===0?b.classList.add('active'):b.classList.remove('active'); });
+
+  renderAll();
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   CALLBACKS
+══════════════════════════════════════════════════════════════════════════════ */
+function setFilter(f,btn){
+  filterKey=f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderAll();
+}
+
+function applySearch(v){ query=v; renderAll(); }
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   BOOT
+══════════════════════════════════════════════════════════════════════════════ */
+renderAll();
+</script>
+</body>
+</html>
