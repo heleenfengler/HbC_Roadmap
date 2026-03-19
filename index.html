@@ -491,6 +491,9 @@
   .s-pilot { color:#3b1f8c; background:#ede9fd; border:1px solid #c4b5fd; }
   .s-pilot .sdot { background:var(--hb-purple); }
 
+  .s-notstarted { color:#374151; background:#f3f4f6; border:1px solid #d1d5db; }
+  .s-notstarted .sdot { background:#9ca3af; }
+
   /* ── VALUE ── */
   .item-value {
     padding: 11px 8px;
@@ -708,7 +711,7 @@ const SECTIONS=[
   /* ── NOVA ─────────────────────────────────────────────────────────────── */
   { product:'nova', title:'Nova', color:'#F7941D', items:[
     { name:'Stabilisation',                                   pri:'',  st:'',    val:'',
-      bars:[{s:0,e:4,lbl:'Stabilisation',t:'green'}] },
+      bars:[{s:0,e:7,lbl:'Stabilisation',t:'green'}] },
     { name:'Stock',                                           pri:'',  st:'late',val:'',
       bars:[{s:6,e:10,lbl:'Stock',t:'green'}] },
     { name:'Consulting Specialists + Common Phase',           pri:'',  st:'',    val:'specialist',
@@ -736,55 +739,57 @@ const SECTIONS=[
       bars:[{s:0,e:5,lbl:'Consulting Specialists Vanilla',t:'green'}] },
     { name:'Consulting Specialist Paeds',                     pri:'medium', st:'', val:'specialist',
       bars:[{s:0,e:5,lbl:'',t:'green'}] },
-    { name:'Consulting Specialist Gynae',                     pri:'',       st:'', val:'specialist', bars:[] },
+    { name:'Consulting Specialist Gynae',                     pri:'medium', st:'', val:'specialist', bars:[] },
     { name:'Specialist Enhancements with Nova Specialists',   pri:'medium', st:'', val:'specialist', bars:[] },
-    { name:'Advanced Dosage Calculator',                      pri:'low',    st:'', val:'newval',      bars:[] }
+    { name:'Advanced Dosage Calculator',                      pri:'low',    st:'', val:'newval',
+      bars:[{s:0,e:5,lbl:'',t:'green'}] }
   ]},
 
   /* ── HBC — Day 1 Value ─────────────────────────────────────────────────── */
   { product:'hbc', title:'Day 1 Value', color:'#BAF5CF', items:[
-    { name:'Practice Claim History (existing sites)',          pri:'',    st:'delivered', val:'meraki',
+    { name:'Practice Claim History (existing sites)',          pri:'high', st:'delivered', val:'meraki',
       bars:[{s:1,e:1,lbl:'',t:'orange'}] },
-    { name:'Practice Path History (existing sites)',           pri:'',    st:'delivered', val:'meraki',
+    { name:'Practice Path History (existing sites)',           pri:'high', st:'delivered', val:'meraki',
       bars:[{s:2,e:2,lbl:'',t:'orange'}] },
-    { name:'Patient Path History (new practices)',             pri:'',    st:'progress',  val:'meraki',
+    { name:'Patient Path History (new practices)',             pri:'high', st:'progress',  val:'meraki',
       bars:[{s:7,e:7,lbl:'',t:'blue'}] },
     { name:'External EMR Notes (new practices)',               pri:'low', st:'delivered', val:'meraki',
       bars:[{s:6,e:6,lbl:'',t:'blue'}] },
     { name:'Voice Note into Patient History (all practices)',  pri:'high',st:'delivered', val:'meraki',
       bars:[{s:6,e:6,lbl:'V1',t:'blue'}] },
-    { name:'Path: Requests',                                   pri:'',    st:'parked',    val:'',      bars:[] },
-    { name:'IS Claims into Hb C (IS Clients)',                 pri:'',    st:'parked',    val:'meraki',bars:[] }
+    { name:'Path: Requests',                                   pri:'low', st:'parked',    val:'',      bars:[] },
+    { name:'IS Claims into Hb C (IS Clients)',                 pri:'low', st:'parked',    val:'meraki',bars:[] }
   ]},
 
   /* ── HBC — Nora ─────────────────────────────────────────────────────────── */
   { product:'hbc', title:'Nora', color:'#7757EC', items:[
-    { name:'Improved Medicine Names',        pri:'high', st:'',          val:'meraki',
+    { name:'Improved Medicine Names',        pri:'high',   st:'progress',    val:'meraki',
       bars:[{s:7,e:7,lbl:'',t:'blue'}] },
-    { name:'Various Note Templates',         pri:'',     st:'',          val:'meraki', bars:[] },
-    { name:'Language Options',               pri:'',     st:'',          val:'meraki', bars:[] },
-    { name:'Nora Sidebar / Backend Update',  pri:'',     st:'delivered', val:'meraki',
+    { name:'Various Note Templates',         pri:'medium', st:'notstarted',  val:'meraki',
+      bars:[{s:8,e:9,lbl:'',t:'blue'}] },
+    { name:'Language Options',               pri:'low',    st:'notstarted',  val:'meraki', bars:[] },
+    { name:'Nora Sidebar / Backend Update',  pri:'medium', st:'delivered',   val:'meraki',
       bars:[{s:6,e:6,lbl:'',t:'blue'}] }
   ]},
 
   /* ── HBC — Meraki 3000 ───────────────────────────────────────────────────── */
   { product:'hbc', title:'Meraki 3000', color:'#F7941D', items:[
-    { name:'Hb Clinical Thin Wedge',       pri:'high', st:'',      val:'meraki', bars:[] },
-    { name:'Nora Sidebar Implementation',  pri:'',     st:'pilot', val:'d1v',
+    { name:'Hb Clinical Thin Wedge',       pri:'high',   st:'progress',    val:'meraki', bars:[] },
+    { name:'Nora Sidebar Implementation',  pri:'medium', st:'pilot',       val:'d1v',
       bars:[{s:1,e:1,lbl:'',t:'dark'}] },
-    { name:'Clinical Standalone',          pri:'high', st:'',      val:'d1v',
+    { name:'Clinical Standalone',          pri:'high',   st:'notstarted',  val:'d1v',
       bars:[{s:12,e:13,lbl:'',t:'dark'}] }
   ]},
 
   /* ── HBC — General Roadmap ───────────────────────────────────────────────── */
   { product:'hbc', title:'General Roadmap', color:'#86888A', items:[
-    { name:'Questionnaires',                         pri:'',       st:'delivered', val:'newval', bars:[] },
-    { name:'UI Refresh',                             pri:'medium', st:'',          val:'10k',
+    { name:'Questionnaires',                         pri:'medium', st:'delivered',  val:'newval', bars:[] },
+    { name:'UI Refresh',                             pri:'medium', st:'notstarted', val:'10k',
       bars:[{s:12,e:13,lbl:'',t:'dark'}] },
-    { name:'Password Protected Documents',           pri:'',       st:'delivered', val:'newval', bars:[] },
-    { name:'Global Inbox',                           pri:'medium', st:'',          val:'newval', bars:[] },
-    { name:'Personalise WhatsApp Pic and Messaging', pri:'high',   st:'',          val:'meraki', bars:[] },
-    { name:'Dis-Chem Add Medication Status',         pri:'medium', st:'progress',  val:'newval',
+    { name:'Password Protected Documents',           pri:'high',   st:'delivered',  val:'newval', bars:[] },
+    { name:'Global Inbox',                           pri:'medium', st:'notstarted', val:'newval', bars:[] },
+    { name:'Personalise WhatsApp Pic and Messaging', pri:'high',   st:'notstarted', val:'meraki', bars:[] },
+    { name:'Dis-Chem Add Medication Status',         pri:'medium', st:'progress',   val:'newval',
       bars:[{s:7,e:7,lbl:'',t:'dark'}] }
   ]},
 
@@ -862,22 +867,24 @@ function priHTML(p){
 }
 
 function stCls(s){
-  const t=(s||'').toLowerCase().trim();
-  if(t==='delivered') return 's-delivered';
-  if(t.includes('progress')) return 's-progress';
-  if(t==='parked') return 's-parked';
-  if(t==='late') return 's-late';
+  const t=(s||'').toLowerCase().trim().replace(/[\s-]+/g,'');
+  if(t==='delivered')   return 's-delivered';
+  if(t==='inprogress'||t==='progress') return 's-progress';
+  if(t==='parked')      return 's-parked';
+  if(t==='late')        return 's-late';
   if(t.includes('pilot')) return 's-pilot';
+  if(t==='notstarted')  return 's-notstarted';
   return '';
 }
 function stLbl(s){
   if(!s) return '';
-  const t=s.toLowerCase().trim();
-  if(t==='delivered')       return '✓ Delivered';
-  if(t.includes('progress'))return '⟳ In Progress';
-  if(t==='parked')          return '⏸ Parked';
-  if(t==='late')            return '⚠ Late';
-  if(t.includes('pilot'))   return '◈ Pilot';
+  const t=s.toLowerCase().trim().replace(/[\s-]+/g,'');
+  if(t==='delivered')   return '✓ Delivered';
+  if(t==='inprogress'||t==='progress') return '⟳ In Progress';
+  if(t==='parked')      return '⏸ Parked';
+  if(t==='late')        return '⚠ Late';
+  if(t.includes('pilot')) return '◈ Pilot';
+  if(t==='notstarted')  return '○ Not Started';
   return s;
 }
 
@@ -903,11 +910,11 @@ function valHTML(v){
    FILTER / SEARCH
 ══════════════════════════════════════════════════════════════════════════════ */
 function matchesFilter(item){
-  const s=(item.st||'').toLowerCase().trim();
+  const s=(item.st||'').toLowerCase().trim().replace(/[\s-]+/g,'');
   const p=(item.pri||'').toLowerCase().trim();
   if(filterKey==='all')       return true;
   if(filterKey==='delivered') return s==='delivered';
-  if(filterKey==='progress')  return s.includes('progress');
+  if(filterKey==='progress')  return s==='inprogress'||s==='progress';
   if(filterKey==='parked')    return s==='parked';
   if(filterKey==='late')      return s==='late';
   if(filterKey==='high')      return p==='high';
@@ -968,9 +975,9 @@ function updateStats(){
   let total=0,del=0,prog=0,late=0,park=0;
   SECTIONS.filter(s=>s.product===mode).forEach(s=>s.items.forEach(it=>{
     total++;
-    const t=(it.st||'').toLowerCase();
+    const t=(it.st||'').toLowerCase().replace(/[\s-]+/g,'');
     if(t==='delivered') del++;
-    else if(t.includes('progress')) prog++;
+    else if(t==='inprogress'||t==='progress') prog++;
     else if(t==='late') late++;
     else if(t==='parked') park++;
   }));
