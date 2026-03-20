@@ -709,94 +709,171 @@ const CUR_IDX=7;
 const SECTIONS=[
 
   /* ── NOVA ─────────────────────────────────────────────────────────────── */
+  /* Source: rows 3-9, Roadmap 2026 Mar (v3)                                 */
   { product:'nova', title:'Nova', color:'#F7941D', items:[
-    { name:'Stabilisation',                                   pri:'',  st:'',    val:'',
+    // Row 4: merge idx0-4 filled + individual idx5,6,7 → Aug 2025 – Mar 2026
+    { name:'Stabilisation',
+      pri:'', st:'', val:'',
       bars:[{s:0,e:7,lbl:'Stabilisation',t:'green'}] },
-    { name:'Stock',                                           pri:'',  st:'late',val:'',
+    // Row 5: merge idx6-10 filled → Feb–Jun 2026
+    { name:'Stock',
+      pri:'', st:'late', val:'',
       bars:[{s:6,e:10,lbl:'Stock',t:'green'}] },
-    { name:'Consulting Specialists + Common Phase',           pri:'',  st:'',    val:'specialist',
+    // Row 6: merge idx6-11 filled dark → Feb–Jul 2026
+    { name:'Consulting Specialists + Common Phase',
+      pri:'', st:'', val:'specialist',
       bars:[{s:6,e:11,lbl:'Consulting Specialists',t:'dark'}] },
-    { name:'Complex Practices (multi-BPN, patient sharing)',  pri:'',  st:'',    val:'specialist',
+    // Row 7: merge idx10-12 filled dark → Jun–Aug 2026
+    { name:'Complex Practices (multi-BPN, patient sharing)',
+      pri:'', st:'', val:'specialist',
       bars:[{s:10,e:12,lbl:'Complex Practices',t:'dark'}] },
-    { name:'Phase 3 Remaining (dev)',                         pri:'',  st:'',    val:'',
+    // Row 8: merge idx13-16 filled dark → Sep–Dec 2026
+    { name:'Phase 3 Remaining (dev)',
+      pri:'', st:'', val:'',
       bars:[{s:13,e:16,lbl:'Phase 3',t:'dark'}] },
-    { name:'Migration',                                       pri:'',  st:'',    val:'',
+    // Row 9: individual dark cells idx7-19 → Mar 2026 onwards (capped at idx16)
+    { name:'Migration',
+      pri:'', st:'', val:'',
       bars:[{s:7,e:16,lbl:'',t:'dark'}] }
   ]},
 
   /* ── HBC — iLab Projects ───────────────────────────────────────────────── */
+  /* Source: rows 12-14                                                        */
   { product:'hbc', title:'Hb Clinical · iLab Projects', color:'#75EB9E', items:[
-    { name:'Bundle 1: Co-pilot + Path Messenger',                       pri:'high', st:'delivered', val:'',
-      bars:[{s:2,e:7,lbl:'Co-pilot & Path Messenger',t:'green'}] },
-    { name:'Bundle 2: Practice Partner',                                pri:'high', st:'progress',  val:'meraki',
+    // Row 12: individual green idx1 (Sep 2025) only — merge G12:L12 has no fill
+    { name:'Bundle 1: Co-pilot + Path Messenger',
+      pri:'high', st:'delivered', val:'',
+      bars:[{s:1,e:1,lbl:'',t:'green'}] },
+    // Row 13: individual orange idx5-7 (Jan–Mar 2026)
+    { name:'Bundle 2: Practice Partner',
+      pri:'high', st:'progress', val:'meraki',
       bars:[{s:5,e:7,lbl:'',t:'orange'}] },
-    { name:'Bundle 3: WhatsApp (pt onboarding, consent, bookings)',     pri:'high', st:'progress',  val:'meraki',
+    // Row 14: individual blue idx7-8 (Mar–Apr 2026)
+    { name:'Bundle 3: WhatsApp (pt onboarding, consent, bookings)',
+      pri:'high', st:'progress', val:'meraki',
       bars:[{s:7,e:8,lbl:'',t:'blue'}] }
   ]},
 
   /* ── HBC — Specialists ─────────────────────────────────────────────────── */
+  /* Source: rows 16-20                                                        */
   { product:'hbc', title:'Specialists', color:'#21364F', items:[
-    { name:'Consulting Specialist Vanilla',                   pri:'medium', st:'', val:'specialist',
+    // Row 16: green idx0-5 (Aug 2025–Jan 2026), st=In-progress (NEW in v3)
+    { name:'Consulting Specialist Vanilla',
+      pri:'medium', st:'progress', val:'specialist',
       bars:[{s:0,e:5,lbl:'Consulting Specialists Vanilla',t:'green'}] },
-    { name:'Consulting Specialist Paeds',                     pri:'medium', st:'', val:'specialist',
+    // Row 17: green idx0-5, st=In-progress (NEW in v3)
+    { name:'Consulting Specialist Paeds',
+      pri:'medium', st:'progress', val:'specialist',
       bars:[{s:0,e:5,lbl:'',t:'green'}] },
-    { name:'Consulting Specialist Gynae',                     pri:'medium', st:'', val:'specialist',
-      bars:[{s:11,e:12,lbl:'',t:'dark'}] },
-    { name:'Specialist Enhancements with Nova Specialists',   pri:'medium', st:'', val:'specialist',
+    // Row 18: green idx0-5 + dark idx11-12, st=In-progress (both NEW in v3)
+    { name:'Consulting Specialist Gynae',
+      pri:'medium', st:'progress', val:'specialist',
+      bars:[{s:0,e:5,lbl:'',t:'green'},{s:11,e:12,lbl:'',t:'dark'}] },
+    // Row 19: dark idx9-11 (May–Jul 2026), st=Not started
+    { name:'Specialist Enhancements with Nova Specialists',
+      pri:'medium', st:'notstarted', val:'specialist',
       bars:[{s:9,e:11,lbl:'',t:'dark'}] },
-    { name:'Advanced Dosage Calculator',                      pri:'low',    st:'', val:'newval',
+    // Row 20: green idx0-5, st=Not started
+    { name:'Advanced Dosage Calculator',
+      pri:'low', st:'notstarted', val:'newval',
       bars:[{s:0,e:5,lbl:'',t:'green'}] }
   ]},
 
   /* ── HBC — Day 1 Value ─────────────────────────────────────────────────── */
+  /* Source: rows 22-28                                                        */
   { product:'hbc', title:'Day 1 Value', color:'#BAF5CF', items:[
-    { name:'Practice Claim History (existing sites)',          pri:'high', st:'delivered', val:'meraki',
+    // Row 22: orange idx1 (Sep 2025) — merge label only, no fill
+    { name:'Practice Claim History (existing sites)',
+      pri:'high', st:'delivered', val:'meraki',
       bars:[{s:1,e:1,lbl:'',t:'orange'}] },
-    { name:'Practice Path History (existing sites)',           pri:'high', st:'delivered', val:'meraki',
+    // Row 23: orange idx2 (Oct 2025) — merge label only, no fill
+    { name:'Practice Path History (existing sites)',
+      pri:'high', st:'delivered', val:'meraki',
       bars:[{s:2,e:2,lbl:'',t:'orange'}] },
-    { name:'Patient Path History (new practices)',             pri:'high', st:'progress',  val:'meraki',
+    // Row 24: blue idx7 (Mar 2026)
+    { name:'Patient Path History (new practices)',
+      pri:'high', st:'progress', val:'meraki',
       bars:[{s:7,e:7,lbl:'',t:'blue'}] },
-    { name:'External EMR Notes (new practices)',               pri:'low', st:'delivered', val:'meraki',
+    // Row 25: blue idx6 (Feb 2026)
+    { name:'External EMR Notes (new practices)',
+      pri:'low', st:'delivered', val:'meraki',
       bars:[{s:6,e:6,lbl:'',t:'blue'}] },
-    { name:'Voice Note into Patient History (all practices)',  pri:'high',st:'delivered', val:'meraki',
+    // Row 26: blue idx6 (Feb 2026) with V1 label
+    { name:'Voice Note into Patient History (all practices)',
+      pri:'high', st:'delivered', val:'meraki',
       bars:[{s:6,e:6,lbl:'V1',t:'blue'}] },
-    { name:'Path: Requests',                                   pri:'low', st:'parked',    val:'',      bars:[] },
-    { name:'IS Claims into Hb C (IS Clients)',                 pri:'low', st:'parked',    val:'meraki',bars:[] }
+    // Row 27: no bars
+    { name:'Path: Requests',
+      pri:'low', st:'parked', val:'', bars:[] },
+    // Row 28: no bars (merge has no fill)
+    { name:'IS Claims into Hb C (IS Clients)',
+      pri:'low', st:'parked', val:'meraki', bars:[] }
   ]},
 
   /* ── HBC — Nora ─────────────────────────────────────────────────────────── */
+  /* Source: rows 30-33                                                         */
   { product:'hbc', title:'Nora', color:'#7757EC', items:[
-    { name:'Improved Medicine Names',        pri:'high',   st:'progress',    val:'meraki',
+    // Row 30: blue idx7 (Mar 2026), st=In-progress
+    { name:'Improved Medicine Names',
+      pri:'high', st:'progress', val:'meraki',
       bars:[{s:7,e:7,lbl:'',t:'blue'}] },
-    { name:'Various Note Templates',         pri:'medium', st:'notstarted',  val:'meraki',
+    // Row 31: blue idx8-9 (Apr–May 2026), st=Not started
+    { name:'Various Note Templates',
+      pri:'medium', st:'notstarted', val:'meraki',
       bars:[{s:8,e:9,lbl:'',t:'blue'}] },
-    { name:'Language Options',               pri:'low',    st:'notstarted',  val:'meraki', bars:[] },
-    { name:'Nora Sidebar / Backend Update',  pri:'medium', st:'delivered',   val:'meraki',
+    // Row 32: no bars, st=Not started
+    { name:'Language Options',
+      pri:'low', st:'notstarted', val:'meraki', bars:[] },
+    // Row 33: blue idx6 (Feb 2026), st=Delivered
+    { name:'Nora Sidebar / Backend Update',
+      pri:'medium', st:'delivered', val:'meraki',
       bars:[{s:6,e:6,lbl:'',t:'blue'}] }
   ]},
 
   /* ── HBC — Meraki 3000 ───────────────────────────────────────────────────── */
+  /* Source: rows 35-37                                                          */
   { product:'hbc', title:'Meraki 3000', color:'#F7941D', items:[
-    { name:'Hb Clinical Thin Wedge',       pri:'high',   st:'progress',    val:'meraki', bars:[] },
-    { name:'Nora Sidebar Implementation',  pri:'medium', st:'pilot',       val:'d1v',
+    // Row 35: dark idx7-9 (Mar–May 2026), st=In-progress — NEW bar in v3
+    { name:'Hb Clinical Thin Wedge',
+      pri:'high', st:'progress', val:'meraki',
+      bars:[{s:7,e:9,lbl:'',t:'dark'}] },
+    // Row 36: dark idx1 (Sep 2025), st=Pilot paused
+    { name:'Nora Sidebar Implementation',
+      pri:'medium', st:'pilot', val:'d1v',
       bars:[{s:1,e:1,lbl:'',t:'dark'}] },
-    { name:'Clinical Standalone',          pri:'high',   st:'notstarted',  val:'d1v',
+    // Row 37: dark idx12-13 (Aug–Sep 2026), st=Not started
+    { name:'Clinical Standalone',
+      pri:'high', st:'notstarted', val:'d1v',
       bars:[{s:12,e:13,lbl:'',t:'dark'}] }
   ]},
 
   /* ── HBC — General Roadmap ───────────────────────────────────────────────── */
+  /* Source: rows 39-44                                                           */
   { product:'hbc', title:'General Roadmap', color:'#86888A', items:[
-    { name:'Questionnaires',                         pri:'medium', st:'delivered',  val:'newval', bars:[] },
-    { name:'UI Refresh',                             pri:'medium', st:'notstarted', val:'10k',
+    // Row 39: no bars
+    { name:'Questionnaires',
+      pri:'medium', st:'delivered', val:'newval', bars:[] },
+    // Row 40: dark idx12-13 (Aug–Sep 2026)
+    { name:'UI Refresh',
+      pri:'medium', st:'notstarted', val:'10k',
       bars:[{s:12,e:13,lbl:'',t:'dark'}] },
-    { name:'Password Protected Documents',           pri:'high',   st:'delivered',  val:'newval', bars:[] },
-    { name:'Global Inbox',                           pri:'medium', st:'notstarted', val:'newval', bars:[] },
-    { name:'Personalise WhatsApp Pic and Messaging', pri:'high',   st:'notstarted', val:'meraki', bars:[] },
-    { name:'Dis-Chem Add Medication Status',         pri:'medium', st:'progress',   val:'newval',
+    // Row 41: no bars
+    { name:'Password Protected Documents',
+      pri:'high', st:'delivered', val:'newval', bars:[] },
+    // Row 42: no bars
+    { name:'Global Inbox',
+      pri:'medium', st:'notstarted', val:'newval', bars:[] },
+    // Row 43: no bars
+    { name:'Personalise WhatsApp Pic and Messaging',
+      pri:'high', st:'notstarted', val:'meraki', bars:[] },
+    // Row 44: dark idx7 (Mar 2026)
+    { name:'Dis-Chem Add Medication Status',
+      pri:'medium', st:'progress', val:'newval',
       bars:[{s:7,e:7,lbl:'',t:'dark'}] }
   ]},
 
   /* ── HBC — No Priority / Parked ────────────────────────────────────────── */
+  /* Source: rows 47-54                                                         */
   { product:'hbc', title:'No Priority / Parked', color:'#DCDDDE', items:[
     { name:'Netcare Hospital Summaries',              pri:'', st:'parked', val:'',       bars:[] },
     { name:'Netcare Path Integration',                pri:'', st:'parked', val:'',       bars:[] },
@@ -805,6 +882,7 @@ const SECTIONS=[
     { name:'Kaelo DIS',                               pri:'', st:'parked', val:'',       bars:[] },
     { name:'Allieds Move from myMPS to Nova - Notes', pri:'', st:'parked', val:'',       bars:[] },
     { name:'Nora Replacement',                        pri:'', st:'parked', val:'',       bars:[] },
+    // Row 54: dark idx5-6 (Jan–Feb 2026)
     { name:'Independent Pharmacy Integrations',       pri:'', st:'parked', val:'newval',
       bars:[{s:5,e:6,lbl:'',t:'dark'}] }
   ]}
