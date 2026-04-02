@@ -827,9 +827,9 @@ const SECTIONS=[
     { name:'Bundle 1: Co-pilot + Path Messenger',
       pri:'high', st:'delivered', val:'',
       bars:[{s:1,e:1,lbl:'',t:'green'}] },
-    // Row 13: individual orange idx5-7 (Jan–Mar 2026)
+    // Row 13: CHANGED Latest — status Late
     { name:'Bundle 2: Practice Partner',
-      pri:'high', st:'progress', val:'meraki',
+      pri:'high', st:'late', val:'meraki',
       bars:[{s:5,e:7,lbl:'',t:'orange'}] },
     // Row 14: individual blue idx7-8 (Mar–Apr 2026)
     { name:'Bundle 3: WhatsApp (pt onboarding, consent, bookings)',
@@ -856,9 +856,9 @@ const SECTIONS=[
     { name:'Specialist Enhancements with Nova Specialists',
       pri:'medium', st:'notstarted', val:'specialist',
       bars:[{s:9,e:11,lbl:'',t:'dark'}] },
-    // Row 20: CHANGED v5 — dark idx7-11 (Mar–Jul 2026), st=Not started
+    // Row 20: CHANGED Latest — val Specialist market
     { name:'Advanced Dosage Calculator',
-      pri:'low', st:'notstarted', val:'newval',
+      pri:'low', st:'notstarted', val:'specialist',
       bars:[{s:7,e:11,lbl:'',t:'dark'}] }
   ]},
 
@@ -924,9 +924,9 @@ const SECTIONS=[
     { name:'Nora Sidebar Implementation',
       pri:'medium', st:'pilot', val:'d1v',
       bars:[{s:1,e:1,lbl:'',t:'dark'}] },
-    // Row 37: dark idx12-13 (Aug–Sep 2026), st=Not started
+    // Row 37: CHANGED Latest — status In pilot
     { name:'Clinical Standalone',
-      pri:'high', st:'notstarted', val:'d1v',
+      pri:'high', st:'pilot', val:'d1v',
       bars:[{s:12,e:13,lbl:'',t:'dark'}] }
   ]},
 
@@ -1064,7 +1064,7 @@ function stLbl(s){
   if(t==='inprogress'||t==='progress') return '⟳ In Progress';
   if(t==='parked')      return '⏸ Parked';
   if(t==='late')        return '⚠ Late';
-  if(t.includes('pilot')) return '◈ Pilot';
+  if(t.includes('pilot')) return t.includes('paus') ? '◈ Pilot, Paused' : '◈ In Pilot';
   if(t==='notstarted')  return '○ Not Started';
   return s;
 }
