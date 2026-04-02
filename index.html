@@ -168,13 +168,18 @@
     box-shadow: 0 1px 6px rgba(117,235,158,0.4);
   }
 
-  .header-snapshot {
-    margin-left: auto;
-    font-size: 10px;
+  .last-updated {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
     font-weight: 600;
-    color: rgba(255,255,255,0.28);
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 4px 11px;
+    letter-spacing: 0.2px;
     flex-shrink: 0;
   }
 
@@ -683,7 +688,10 @@
     <button class="tog-btn active-hbc" id="btnHbc" onclick="setMode('hbc')">Healthbridge Clinical</button>
   </div>
 
-  <div class="header-snapshot">2026 · March Snapshot</div>
+  <div class="last-updated">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    Updated 2 Apr 2026
+  </div>
 </header>
 
 <!-- ══════════ MODE STRIP ══════════ -->
