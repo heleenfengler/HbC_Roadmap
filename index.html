@@ -606,58 +606,6 @@
   ::-webkit-scrollbar { width: 5px; height: 5px; }
   ::-webkit-scrollbar-thumb { background: var(--slate-300); border-radius: 3px; }
 </style>
-    --hb-charcoal-dk: #2e2d2f;
-    --hb-navy:        #21364F;
-    --hb-orange:      #F7941D;
-    --hb-red-orange:  #FF4B00;
-    --hb-green:       #75EB9E;
-    --hb-green-2:     #BAF5CF;
-    --hb-green-dim:   #E3FBEC;
-    --hb-purple:      #7757EC;
-    --hb-gray:        #86888A;
-    --hb-gray-2:      #DCDDDE;
-    --white:          #FFFFFF;
-
-    /* ── surface tokens ── */
-    --bg:       #f5f4f2;
-    --surface:  #ffffff;
-    --surface2: #eeecea;
-    --border:   #e0ddd9;
-    --text:     #414042;
-    --muted:    #86888A;
-    --dim:      #b8b5b0;
-
-    /* ── accent (switches per mode) ── */
-    --accent:      #75EB9E;
-    --accent-dark: #21364F;
-
-    /* ── bar colors (switch per mode) ── */
-    --bar-green:  #75EB9E;
-    --bar-dark:   #414042;
-    --bar-blue:   #7757EC;
-    --bar-orange: #F7941D;
-  }
-
-  body.mode-nova {
-    --accent:     #F7941D;
-    --accent-dark:#ffffff;
-    --bar-green:  #F7941D;
-    --bar-dark:   #414042;
-    --bar-blue:   #FF4B00;
-    --bar-orange: #FFC000;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Figtree', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-</style>
 </head>
 <body class="mode-hbc">
 
@@ -713,7 +661,7 @@
 <!-- ══════════ STATS ══════════ -->
 <div class="stats-bar">
   <div class="stat">
-    <div class="stat-num" style="color:var(--hb-orange)" id="sTotal">—</div>
+    <div class="stat-num" style="color:var(--brand-orange)" id="sTotal">—</div>
     <div class="stat-label">Total Items</div>
   </div>
   <div class="stat">
@@ -721,15 +669,15 @@
     <div class="stat-label">Delivered</div>
   </div>
   <div class="stat">
-    <div class="stat-num" style="color:var(--hb-orange)" id="sProgress">—</div>
+    <div class="stat-num" style="color:var(--brand-orange)" id="sProgress">—</div>
     <div class="stat-label">In Progress</div>
   </div>
   <div class="stat">
-    <div class="stat-num" style="color:var(--hb-red-orange)" id="sLate">—</div>
+    <div class="stat-num" style="color:var(--danger)" id="sLate">—</div>
     <div class="stat-label">Late</div>
   </div>
   <div class="stat">
-    <div class="stat-num" style="color:var(--hb-gray)" id="sParked">—</div>
+    <div class="stat-num" style="color:var(--fg-3)" id="sParked">—</div>
     <div class="stat-label">Parked</div>
   </div>
 </div>
@@ -785,11 +733,11 @@
 
 <!-- ══════════ LEGEND ══════════ -->
 <div class="legend">
-  <div class="leg-item"><div class="leg-sw" id="ls-green" style="background:var(--hb-green)"></div>Scheduled / Delivered</div>
-  <div class="leg-item"><div class="leg-sw" style="background:var(--hb-charcoal)"></div>Planned</div>
-  <div class="leg-item"><div class="leg-sw" id="ls-blue" style="background:var(--hb-purple)"></div>In-Flight</div>
-  <div class="leg-item"><div class="leg-sw" id="ls-orange" style="background:var(--hb-orange)"></div>Milestone</div>
-  <div class="leg-item"><div class="leg-sw" style="background:transparent;border:2px solid var(--accent);box-sizing:border-box"></div>Current Month (Mar)</div>
+  <div class="leg-item"><div class="leg-sw" id="ls-green" style="background:var(--mint-100)"></div>Scheduled / Delivered</div>
+  <div class="leg-item"><div class="leg-sw" style="background:var(--brand-charcoal)"></div>Planned</div>
+  <div class="leg-item"><div class="leg-sw" id="ls-blue" style="background:var(--purple-100)"></div>In-Flight</div>
+  <div class="leg-item"><div class="leg-sw" id="ls-orange" style="background:var(--brand-orange)"></div>Milestone</div>
+  <div class="leg-item"><div class="leg-sw" style="background:transparent;border:2px solid var(--brand);box-sizing:border-box"></div>Current Month (Mar)</div>
 </div>
 
 <script>
@@ -1068,9 +1016,9 @@ function renderBar(bars){
    BADGE HELPERS
 ══════════════════════════════════════════════════════════════════════════════ */
 function priHTML(p){
-  if(!p) return `<div class="item-priority" style="border-right:1px solid var(--border)"></div>`;
+  if(!p) return `<div class="item-priority" style="border-right:1px solid var(--border-1)"></div>`;
   const c=p==='high'?'pri-high':p==='medium'?'pri-medium':'pri-low';
-  return `<div class="item-priority" style="border-right:1px solid var(--border)"><span class="pri-badge ${c}">${p}</span></div>`;
+  return `<div class="item-priority" style="border-right:1px solid var(--border-1)"><span class="pri-badge ${c}">${p}</span></div>`;
 }
 
 function stCls(s){
@@ -1096,12 +1044,12 @@ function stLbl(s){
 }
 
 function stHTML(s){
-  if(!s) return `<div class="item-status" style="border-right:1px solid var(--border)"></div>`;
-  return `<div class="item-status" style="border-right:1px solid var(--border)"><span class="status-badge ${stCls(s)}"><span class="sdot"></span>${stLbl(s)}</span></div>`;
+  if(!s) return `<div class="item-status" style="border-right:1px solid var(--border-1)"></div>`;
+  return `<div class="item-status" style="border-right:1px solid var(--border-1)"><span class="status-badge ${stCls(s)}"><span class="sdot"></span>${stLbl(s)}</span></div>`;
 }
 
 function valHTML(v){
-  if(!v) return `<div class="item-value" style="border-right:1px solid var(--border)"></div>`;
+  if(!v) return `<div class="item-value" style="border-right:1px solid var(--border-1)"></div>`;
   const map={
     meraki:  {cls:'v-meraki', lbl:'Meraki 3000'},
     '10k':   {cls:'v-10k',    lbl:'Meraki 10k'},
@@ -1110,7 +1058,7 @@ function valHTML(v){
     newval:  {cls:'v-newval', lbl:'New Value'}
   };
   const m=map[v]||{cls:'',lbl:v};
-  return `<div class="item-value" style="border-right:1px solid var(--border)"><span class="val-badge ${m.cls}">${m.lbl}</span></div>`;
+  return `<div class="item-value" style="border-right:1px solid var(--border-1)"><span class="val-badge ${m.cls}">${m.lbl}</span></div>`;
 }
 
 /* ══════════════════════════════════════════════════════════════════════════════
