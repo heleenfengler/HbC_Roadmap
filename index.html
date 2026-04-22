@@ -690,7 +690,7 @@
 
   <div class="last-updated">
     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-    Updated 2 Apr 2026
+    Updated 22 Apr 2026
   </div>
 </header>
 
@@ -814,17 +814,17 @@ const SECTIONS=[
     { name:'Consulting Specialists + Common Phase',
       pri:'', st:'', val:'specialist',
       bars:[{s:6,e:11,lbl:'Consulting Specialists',t:'dark'}] },
-    // Row 7: merge idx10-12 filled dark → Jun–Aug 2026
+    // Row 7: CHANGED — status Not started, bar removed
     { name:'Complex Practices (multi-BPN, patient sharing)',
-      pri:'', st:'', val:'specialist',
-      bars:[{s:10,e:12,lbl:'Complex Practices',t:'dark'}] },
-    // Row 8: merge idx13-16 filled dark → Sep–Dec 2026
+      pri:'', st:'notstarted', val:'specialist',
+      bars:[] },
+    // Row 8: CHANGED — status Not started
     { name:'Phase 3 Remaining (dev)',
-      pri:'', st:'', val:'',
+      pri:'', st:'notstarted', val:'',
       bars:[{s:13,e:16,lbl:'Phase 3',t:'dark'}] },
-    // Row 9: individual dark cells idx7-19 → Mar 2026 onwards (capped at idx16)
+    // Row 9: CHANGED — status Late
     { name:'Migration',
-      pri:'', st:'', val:'',
+      pri:'', st:'late', val:'',
       bars:[{s:7,e:16,lbl:'',t:'dark'}] }
   ]},
 
@@ -864,9 +864,9 @@ const SECTIONS=[
     { name:'Specialist Enhancements with Nova Specialists',
       pri:'medium', st:'notstarted', val:'specialist',
       bars:[{s:9,e:11,lbl:'',t:'dark'}] },
-    // Row 20: CHANGED Latest — val Specialist market
+    // Row 20: CHANGED — status In-progress
     { name:'Advanced Dosage Calculator',
-      pri:'low', st:'notstarted', val:'specialist',
+      pri:'low', st:'progress', val:'specialist',
       bars:[{s:7,e:11,lbl:'',t:'dark'}] }
   ]},
 
@@ -881,9 +881,9 @@ const SECTIONS=[
     { name:'Practice Path History (existing sites)',
       pri:'high', st:'delivered', val:'meraki',
       bars:[{s:2,e:2,lbl:'',t:'orange'}] },
-    // Row 24: blue idx7 (Mar 2026)
+    // Row 24: CHANGED — status Delivered
     { name:'Patient Path History (new practices)',
-      pri:'high', st:'progress', val:'meraki',
+      pri:'high', st:'delivered', val:'meraki',
       bars:[{s:7,e:7,lbl:'',t:'blue'}] },
     // Row 25: blue idx6 (Feb 2026)
     { name:'External EMR Notes (new practices)',
@@ -896,7 +896,15 @@ const SECTIONS=[
     // Row 27: no bars
     { name:'Path: Requests',
       pri:'low', st:'parked', val:'', bars:[] },
-    // Row 28: no bars (merge has no fill)
+    // Row 28: NEW — Patient summary | High | Late | orange idx5-8
+    { name:'Patient Summary',
+      pri:'high', st:'late', val:'',
+      bars:[{s:5,e:8,lbl:'',t:'orange'}] },
+    // Row 29: NEW — Historic clinical file upload | Medium | In-progress | orange idx7-9
+    { name:'Historic Clinical File Upload',
+      pri:'medium', st:'progress', val:'',
+      bars:[{s:7,e:9,lbl:'',t:'orange'}] },
+    // Row 30: no bars
     { name:'IS Claims into Hb C (IS Clients)',
       pri:'low', st:'parked', val:'meraki', bars:[] }
   ]},
@@ -904,14 +912,14 @@ const SECTIONS=[
   /* ── HBC — Nora ─────────────────────────────────────────────────────────── */
   /* Source: rows 30-33                                                         */
   { product:'hbc', title:'Nora', color:'#7757EC', items:[
-    // Row 30: blue idx7 (Mar 2026), st=In-progress
+    // Row 32: CHANGED — status Delivered
     { name:'Improved Medicine Names',
-      pri:'high', st:'progress', val:'meraki',
+      pri:'high', st:'delivered', val:'meraki',
       bars:[{s:7,e:7,lbl:'',t:'blue'}] },
-    // Row 31: blue idx8-9 (Apr–May 2026), st=Not started
+    // Row 33: CHANGED — bars idx10-11 (Jun–Jul 2026)
     { name:'Various Note Templates',
       pri:'medium', st:'notstarted', val:'meraki',
-      bars:[{s:8,e:9,lbl:'',t:'blue'}] },
+      bars:[{s:10,e:11,lbl:'',t:'blue'}] },
     // Row 32: no bars, st=Not started
     { name:'Language Options',
       pri:'low', st:'notstarted', val:'meraki', bars:[] },
@@ -928,9 +936,9 @@ const SECTIONS=[
     { name:'Hb Clinical Thin Wedge',
       pri:'high', st:'progress', val:'meraki',
       bars:[{s:7,e:9,lbl:'',t:'dark'}] },
-    // Row 36: dark idx1 (Sep 2025), st=Pilot paused
+    // Row 38: CHANGED — status Delivered
     { name:'Nora Sidebar Implementation',
-      pri:'medium', st:'pilot', val:'d1v',
+      pri:'medium', st:'delivered', val:'d1v',
       bars:[{s:1,e:1,lbl:'',t:'dark'}] },
     // Row 37: CHANGED Latest — status In pilot
     { name:'Clinical Standalone',
